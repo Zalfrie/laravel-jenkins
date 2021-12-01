@@ -1,10 +1,19 @@
-node {
-    stage("composer_install") {
-        // Run `composer update` as a shell script
-        sh 'composer install'
-    }
-    stage("phpunit") {
-        // Run PHPUnit
-        sh 'vendor/bin/phpunit'
-    }
+pipeline {
+ agent any
+ stages {
+        stage("Build") {
+            steps {
+                sh 'php --version'
+                sh 'composer install'
+                sh 'composer --version'
+                sh 'cp .env.example .env'
+                sh 'php artisan key:generate'
+            }
+        }
+        stage("Unit test") {
+            steps {
+                sh 'php artisan test'
+            }
+        }
+  }
 }
