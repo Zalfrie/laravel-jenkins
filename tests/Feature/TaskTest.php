@@ -48,7 +48,7 @@ class TaskTest extends TestCase
         //
         $this->post('/tasks/create', $task->toArray());
         //
-        $this->assertEquals(1, Task::all()->count());
+        $this->assertEquals(0, Task::all()->count());
     }
 
     /**
