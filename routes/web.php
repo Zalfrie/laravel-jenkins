@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TasksController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+/**
+ * Testing
+ */
+Route::get('/tasks', [TasksController::class, 'index']);
+Route::post('/tasks/create', [TasksController::class, 'store']);
+Route::get('/tasks/{task}', [TasksController::class, 'show']);
