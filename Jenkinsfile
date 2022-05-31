@@ -3,11 +3,11 @@ pipeline {
  stages {
         stage("Build") {
             steps {
-                sh 'php --version'
-                sh 'composer install'
-                sh 'composer --version'
-                sh 'cp .env.testing .env'
-                sh 'php artisan key:generate'
+                cmd 'php --version'
+                cmd 'composer install'
+                cmd 'composer --version'
+                cmd 'cp .env.testing .env'
+                cmd 'php artisan key:generate'
             }
         }
         stage("Unit test") {
